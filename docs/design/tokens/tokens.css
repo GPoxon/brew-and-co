@@ -1,0 +1,367 @@
+/*
+ * Brew & Co. design tokens. Single source of truth for Tailwind v4.
+ *
+ * Import after Tailwind in app/globals.css:
+ *   @import "tailwindcss";
+ *   @import "../docs/design/tokens/tokens.css";
+ *
+ * Layers:
+ *   1. Primitives  raw values. Reference them only from this file.
+ *   2. Semantics   what components use. They change with data-surface.
+ *   3. Utilities   type-* composite text styles.
+ */
+
+/* 1. Primitives ----------------------------------------------------------- */
+@theme static {
+  /* Remove Tailwind's default scales so off-system values fail to compile
+     into anything: bg-zinc-50 or rounded-lg simply produce no CSS. */
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  /* Roast: warm espresso blacks. 900 is the page. */
+  --color-roast-950: #171411;
+  --color-roast-900: #1f1b1a;
+  --color-roast-800: #2b2522;
+  --color-roast-700: #3f3631;
+  --color-roast-600: #5a4f48;
+  --color-roast-500: #6e625a;
+
+  /* Stone: the cool greige plinth. Light surfaces use this, not cream. */
+  --color-stone-500: #8f867d;
+  --color-stone-400: #a89e95;
+  --color-stone-300: #bab2a9;
+  --color-stone-200: #d3cdc6;
+  --color-stone-100: #e6e1db;
+
+  /* Kraft: bag paper. The only accent allowed to fill a shape. */
+  --color-kraft-800: #5f4322;
+  --color-kraft-700: #7a5a36;
+  --color-kraft-500: #b18758;
+  --color-kraft-400: #c49a69;
+
+  /* Gilt: foil line-work. Strokes and small type only, never a fill. */
+  --color-gilt-100: #f3e4cc;
+  --color-gilt-300: #e8c7a0;
+  --color-gilt-500: #d8ac78;
+
+  /* Ember: low sun. Signature line and focus ring only. */
+  --color-ember-400: #f1b34f;
+
+  /* Patina: painted door. A cool counterweight, used in one block per page. */
+  --color-patina-800: #1f3335;
+  --color-patina-700: #2b4043;
+  --color-patina-600: #4a5f62;
+
+  /* Ivory: reversed text and bag labels. Not a page background. */
+  --color-ivory: #fbf7ee;
+
+  /* Scrim: roast-950 laid over photos and behind modals. At 70%, even a pure white
+     pixel behind it leaves ivory at 6.2:1 and ember at 3.6:1, so any photo is safe. */
+  --color-scrim: rgb(23 20 17 / 0.7);
+
+  /* Status */
+  --color-rust-300: #eb9a7c;
+  --color-rust-700: #8c2f12;
+  --color-sage-300: #b9c78c;
+  --color-sage-700: #46561f;
+
+  /* Type scale, after Bringhurst's classical scale:
+     14 16 18 21 24 36 48 60 72 96 120. Fluid steps move between two stops. */
+  --text-caption: 0.875rem;
+  --text-small: 1rem;
+  --text-body: 1.125rem;
+  --text-lead: 1.3125rem;
+  --text-h4: 1.5rem;
+  --text-h3: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  --text-h2: clamp(2.25rem, 1.8rem + 2vw, 3.75rem);
+  --text-h1: clamp(3rem, 2.3rem + 3.2vw, 4.5rem);
+  --text-display: clamp(3.75rem, 2.4rem + 6.4vw, 7.5rem);
+  --text-signature: clamp(2.25rem, 1.8rem + 2.4vw, 4.5rem);
+  --text-stamp: 0.8125rem;
+
+  --leading-tight: 1;
+  --leading-heading: 1.12;
+  --leading-copy: 1.6;
+
+  --tracking-display: -0.015em;
+  --tracking-stamp: 0.22em;
+
+  /* Spacing: Tailwind's 4px base stays (p-4 is 16px). These add page rhythm. */
+  --spacing: 0.25rem;
+  --spacing-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --spacing-block: clamp(3.5rem, 8vw, 7.5rem);
+
+  --container-measure: 38rem;
+  --container-page: 90rem;
+
+  /* Shape: blocks are square, controls barely eased, seals are circles. */
+  --radius-control: 2px;
+
+  /* Depth: blocks sit flat. Only things that float above the page cast shadow. */
+  --shadow-overlay: 0 24px 48px -16px rgb(23 20 17 / 0.65);
+
+  /* Motion */
+  --ease-pour: cubic-bezier(0.22, 0.7, 0.2, 1);
+  --duration-quick: 120ms;
+  --duration-settle: 240ms;
+  --duration-pour: 1400ms;
+
+  --animate-pour: pour var(--duration-pour) var(--ease-pour) 200ms both;
+  --animate-steam: steam 1800ms ease-in-out infinite;
+
+  @keyframes pour {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes steam {
+    50% {
+      opacity: 0.45;
+    }
+  }
+}
+
+/* 2. Semantics ------------------------------------------------------------ */
+/* inline: utilities output var(--surface) directly, so they resolve against
+   the nearest data-surface instead of the root. */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-rule: var(--rule);
+  --color-control: var(--control);
+  --color-accent-ink: var(--accent-ink);
+  --color-signature: var(--signature);
+  --color-action: var(--action);
+  --color-on-action: var(--on-action);
+  --color-action-hover: var(--action-hover);
+  --color-focus: var(--focus);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  /* Set on <html> by docs/design/tokens/fonts.ts */
+  --font-display: var(--font-gloock), Georgia, serif;
+  --font-sans: var(--font-jost), "Century Gothic", system-ui, sans-serif;
+  --font-signature: var(--font-dafoe), cursive;
+}
+
+@layer base {
+  :root,
+  [data-surface="roast"] {
+    color-scheme: dark;
+    --surface: var(--color-roast-900);
+    --raised: var(--color-roast-800);
+    --ink: var(--color-ivory);
+    --ink-muted: var(--color-stone-300);
+    --rule: var(--color-roast-700);
+    --control: var(--color-stone-500);
+    --accent-from: var(--color-gilt-100);
+    --accent-to: var(--color-gilt-500);
+    --accent-ink: var(--color-gilt-300);
+    --signature: var(--color-ember-400);
+    --action: var(--color-kraft-500);
+    --on-action: var(--color-roast-950);
+    --action-hover: var(--color-kraft-400);
+    --focus: var(--color-ember-400);
+    --danger: var(--color-rust-300);
+    --success: var(--color-sage-300);
+  }
+
+  [data-surface="patina"] {
+    color-scheme: dark;
+    --surface: var(--color-patina-800);
+    --raised: var(--color-patina-700);
+    --ink: var(--color-ivory);
+    --ink-muted: var(--color-stone-200);
+    --rule: var(--color-patina-600);
+    --control: var(--color-stone-400);
+    --accent-from: var(--color-gilt-100);
+    --accent-to: var(--color-gilt-500);
+    --accent-ink: var(--color-gilt-300);
+    --signature: var(--color-ember-400);
+    --action: var(--color-kraft-400);
+    --on-action: var(--color-roast-950);
+    --action-hover: var(--color-gilt-300);
+    --focus: var(--color-ember-400);
+    --danger: var(--color-rust-300);
+    --success: var(--color-sage-300);
+  }
+
+  [data-surface="stone"] {
+    color-scheme: light;
+    --surface: var(--color-stone-200);
+    --raised: var(--color-stone-100);
+    --ink: var(--color-roast-900);
+    --ink-muted: var(--color-roast-600);
+    --rule: var(--color-stone-400);
+    --control: var(--color-roast-500);
+    --accent-from: var(--color-roast-900);
+    --accent-to: var(--color-kraft-700);
+    --accent-ink: var(--color-kraft-800);
+    --signature: var(--color-kraft-800);
+    --action: var(--color-roast-900);
+    --on-action: var(--color-ivory);
+    --action-hover: var(--color-roast-700);
+    --focus: var(--color-patina-800);
+    --danger: var(--color-rust-700);
+    --success: var(--color-sage-700);
+  }
+
+  [data-surface="kraft"] {
+    color-scheme: light;
+    --surface: var(--color-kraft-500);
+    --raised: var(--color-kraft-400);
+    --ink: var(--color-roast-950);
+    --ink-muted: var(--color-roast-800);
+    --rule: var(--color-kraft-700);
+    --control: var(--color-roast-900);
+    --accent-from: var(--color-roast-950);
+    --accent-to: var(--color-roast-800);
+    --accent-ink: var(--color-roast-950);
+    --signature: var(--color-roast-950);
+    --action: var(--color-roast-950);
+    --on-action: var(--color-ivory);
+    --action-hover: var(--color-roast-700);
+    --focus: var(--color-roast-950);
+    --danger: var(--color-roast-950);
+    --success: var(--color-roast-950);
+  }
+
+  [data-surface] {
+    background-color: var(--surface);
+    color: var(--ink);
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--leading-copy);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  dialog::backdrop {
+    background-color: var(--color-scrim);
+  }
+
+  ::selection {
+    background-color: var(--action);
+    color: var(--on-action);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      animation-delay: 0ms !important;
+      transition-duration: 1ms !important;
+    }
+  }
+}
+
+/* 3. Text styles ---------------------------------------------------------- */
+@utility type-display {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+}
+
+@utility type-h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: 400;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+}
+
+@utility type-h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 400;
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+}
+
+@utility type-h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 400;
+  line-height: var(--leading-heading);
+}
+
+@utility type-h4 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h4);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+@utility type-lead {
+  font-family: var(--font-sans);
+  font-size: var(--text-lead);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@utility type-body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: var(--leading-copy);
+}
+
+@utility type-small {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@utility type-caption {
+  font-family: var(--font-sans);
+  font-size: var(--text-caption);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+@utility type-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-small);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* Tracked capitals are for packaging-style marks only. See the style guide. */
+@utility type-stamp {
+  font-family: var(--font-sans);
+  font-size: var(--text-stamp);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: var(--tracking-stamp);
+  text-transform: uppercase;
+}
+
+/* One line per view, 36px or larger, and never the only place a fact appears. */
+@utility type-signature {
+  font-family: var(--font-signature);
+  font-size: var(--text-signature);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--signature);
+}

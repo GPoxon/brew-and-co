@@ -1,0 +1,21 @@
+category,name,description,price,badge
+Espresso Drinks,Espresso,"A double shot of our Daybreak blend, with notes of milk chocolate and hazelnut.",2.80,
+Espresso Drinks,Flat White,"Double espresso with silky steamed whole milk.",3.60,Popular
+Espresso Drinks,Cappuccino,"Double espresso under a deep layer of milk foam, dusted with cocoa.",3.60,
+Espresso Drinks,Oat Latte,"Double espresso with steamed oat milk, smooth and lightly sweet.",3.90,Popular
+Espresso Drinks,Cardamom Mocha,"Espresso, dark chocolate and steamed milk with a pinch of ground cardamom.",4.30,House Favourite
+Pastries,Butter Croissant,"Flaky, golden and baked fresh each morning.",3.20,
+Pastries,Pain au Chocolat,"Buttery pastry folded around two batons of dark chocolate.",3.50,Popular
+Pastries,Cardamom Bun,"Soft, sticky and twisted with cardamom sugar.",3.80,House Favourite
+Pastries,Almond Croissant,"Filled with almond frangipane and topped with toasted flaked almonds.",3.90,
+Pastries,Blueberry Scone,"Crumbly buttermilk scone served warm with salted butter.",3.40,
+Sandwiches,Ham and Gruyère Toastie,"Smoked ham, melted Gruyère and wholegrain mustard on toasted sourdough.",7.50,Popular
+Sandwiches,Three Cheese Toastie,"Cheddar, Gruyère and mozzarella with caramelised onion chutney on sourdough.",7.20,House Favourite
+Sandwiches,Chicken Pesto Ciabatta,"Roast chicken, basil pesto, rocket and sun-dried tomato in a toasted ciabatta.",7.90,
+Sandwiches,Smoked Salmon Bagel,"Smoked salmon, cream cheese, cucumber and dill on a toasted sesame bagel.",8.20,
+Sandwiches,Roasted Veg and Hummus Wrap,"Roasted peppers, courgette, red onion and spinach with lemon hummus.",6.80,
+Cold Drinks,Iced Latte,"Double espresso over ice with cold whole milk.",3.90,Popular
+Cold Drinks,Cold Brew,"Steeped for 16 hours and served over ice, smooth and low in acidity.",3.80,House Favourite
+Cold Drinks,Iced Mocha,"Espresso, dark chocolate and cold milk, shaken over ice.",4.40,
+Cold Drinks,Fresh Orange Juice,"Freshly squeezed oranges, with nothing added.",3.50,
+Cold Drinks,Sparkling Elderflower,"Elderflower cordial topped with sparkling water and a slice of lemon.",3.20,
